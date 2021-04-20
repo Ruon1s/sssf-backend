@@ -1,0 +1,19 @@
+{
+  "name": "sssf-backend",
+  "version": "1.0.0",
+  "description": "sssf course projects backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ruon1s/sssf-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ruon1s/sssf-backend/issues"
+  },
+  "homepage": "https://github.com/Ruon1s/sssf-backend#readme"
+}
