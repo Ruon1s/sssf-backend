@@ -39,6 +39,7 @@ export default gql`
         
     modifyEntry(
         id: ID!
+        File: Image
         Entryname: String
         Ingredients: String
         Steps: String
