@@ -22,7 +22,7 @@ export default gql`
     }
     
     input Image {
-    File: Upload!
+    File: Upload
     }
     
     extend type Mutation {  
@@ -38,8 +38,8 @@ export default gql`
         ): Entry
         
     modifyEntry(
+        id: ID!
         Entryname: String
-        File: Upload!
         Ingredients: String
         Steps: String
         Rating: Int

@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import Entries from '../models/Entries.js'
+import {AuthenticationError} from "apollo-server-errors";
 
 export default {
     Query: {
@@ -16,37 +17,74 @@ export default {
 
     Mutation: {
         addEntry: async (parent, args, {user}) => {
-            //loading image to the server
-    /*        if(!user) {
+            if (!user) {
                 throw new AuthenticationError('You have not logged in')
-            } */
+            }
+
+
             try {
-                console.log('addEntry args', args);
-                console.log(await args.File.File);
-                let {filename, createReadStream} = await args.File.File;
-                console.log(filename);
-                const stream = createReadStream();
-                const pathName = path.join(`C://Users/Mikael/Native/sssf-backend/uploads/${filename}`);
-                console.log('pathname', pathName);
-                await stream.pipe(fs.createWriteStream(pathName));
-                const photourl = {
-                    url: `http://localhost:8000/uploads/${filename}`
-                };
-                let entry = {...args, File: photourl.url};
-                let newEntry = new Entries(entry);
-                const rslt = await newEntry.save();
-                return rslt;
-            }catch(e){
+                if (!args.File) {
+                    let entry = args;
+                    let newEntry = new Entries(entry);
+                    const rslt = await newEntry.save();
+                    return rslt;
+                } else {
+                    console.log('addEntry args', args);
+                    console.log(await args.File.File);
+                    let {filename, createReadStream} = await args.File.File;
+                    console.log(filename);
+                    const stream = createReadStream();
+                    const pathName = path.join(`C://Users/Mikael/Native/sssf-backend/uploads/${filename}`);
+                    console.log('pathname', pathName);
+                    await stream.pipe(fs.createWriteStream(pathName));
+                    const photourl = {
+                        url: `http://localhost:8000/uploads/${filename}`
+                    };
+                    let entry = {...args, File: photourl.url};
+                    let newEntry = new Entries(entry);
+                    const rslt = await newEntry.save();
+                    return rslt;
+                }
+            } catch (e) {
 
             }
 
 
         },
         modifyEntry: async (parent, args, {user}) => {
-            console.log('dostuff');
+            if (!user) {
+                throw new AuthenticationError('You have not logged in')
+            }
+
+
+            try {
+                console.log('modify args', args);
+                let modifyEntry = {
+                    ...args
+                };
+                return await Entries.findByIdAndUpdate(args.id, modifyEntry, {new: true})
+            } catch (e) {
+                throw new Error(e);
+            }
         },
         deleteEntry: async (parent, args, {user}) => {
             console.log('dostuff');
+            if (!user) {
+                throw new AuthenticationError('You have not logged in')
+            }
+            try {
+                const entry = await Entries.findById(args.id);
+                console.log('entry to delete', entry);
+                const filename = entry.File.replace(/^.*(\\|\/|\:)/, '');
+                console.log('filename', filename);
+                await fs.unlink(`C://Users/Mikael/Native/sssf-backend/uploads/${filename}`, (err) => {
+                    console.log(err)
+                });
+                return await Entries.findByIdAndDelete(args.id);
+
+            } catch (e) {
+
+            }
         }
 
     }
