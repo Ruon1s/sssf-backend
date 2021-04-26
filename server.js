@@ -1,7 +1,4 @@
 'use strict';
-
-'use strict';
-
 import {ApolloServer} from 'apollo-server-express';
 import schemas from './schemas/index.js';
 import resolvers from './resolvers/index.js';
@@ -47,7 +44,11 @@ dotenv.config();
             console.log('localhost');
             const { default: localhost } = await import('./host/localhost.js');
             localhost(app, 8000, 3000);
+            console.log(
+                `🚀 Server ready at http://localhost:3000${server.graphqlPath}`);
         }
+
+
 
     } catch (e) {
         console.log('server error: ' + e.message);

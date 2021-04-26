@@ -1,57 +1,50 @@
 'use strict';
-
 import {gql} from 'apollo-server-express';
 
 
 export default gql`
-    extend type Query {
-    entries(): [Entry],
-    entriesByUser(id: ID!): [Station]
-    }
-    
+
     type Entry {
         id: ID
         Entryname: String
-        Image: Image
+        File: String
         Ingredients: String
         Steps: String
         Rating: Int
-        Date: Date
-        userID: ID
+        Date: Float
+        userID: String
     }
     
-    extend type Mutation{
+    
+    extend type Query {
+    entries: [Entry]
+    entriesByUser(id: String): [Entry]
+    }
+    
+    input Image {
+    File: Upload!
+    }
+    
+    extend type Mutation {  
     deleteEntry(id: ID!): Entry
     addEntry(
         Entryname: String
-        Image: Image
+        File: Image
         Ingredients: String
         Steps: String
         Rating: Int
-        Date: Date
-        userID: ID
+        Date: Float
+        userID: String
         ): Entry
+        
     modifyEntry(
         Entryname: String
-        Image: Image
+        File: Upload!
         Ingredients: String
         Steps: String
         Rating: Int
-    ): Entry    
-    }
-
-
-    extend type Mutation {
-    deleteStation(id: ID!): Station
-    addStation(
-    Connections: [Connections]
-    Postcode: String
-    Title: String
-    AddressLine1: String
-    StateOrProvince: String
-    Town: String
-    Location: newLocation
-    ): Station
+    ): Entry
+    
     }
     
 `

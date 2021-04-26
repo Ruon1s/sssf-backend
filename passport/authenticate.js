@@ -10,6 +10,7 @@ export const login = (req, res) => {
                 req.login(user, {session: false}, async error => {
                     if (error) reject(error);
                     const token = jwt.sign(user, 'asd123');
+                    console.log(user);
                     resolve({user, token});
                 })
             } catch (error) {

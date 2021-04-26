@@ -15,7 +15,7 @@ export default {
             try {
                 const response = await login(req, res);
                 return {
-                    id: response.user.id,
+                    id: response.user._id,
                     username: response.user.username,
                     token: response.token
                 };
