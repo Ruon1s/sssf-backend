@@ -39,13 +39,13 @@ dotenv.config();
         console.log(process.env.NODE_ENV);
         process.env.NODE_ENV = process.env.NODE_ENV || 'development';
         if (process.env.NODE_ENV === 'production') {
-            remote(app, 3000);
+            remote(app, 4000);
         } else {
             console.log('localhost');
             const { default: localhost } = await import('./host/localhost.js');
-            localhost(app, 8000, 3000);
+            localhost(app, 8000, 4000);
             console.log(
-                `🚀 Server ready at http://localhost:3000${server.graphqlPath}`);
+                `🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
         }
 
 

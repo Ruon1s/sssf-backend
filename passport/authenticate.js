@@ -1,3 +1,5 @@
+'use strict';
+
 import jwt from 'jsonwebtoken';
 import passport from './strategies.js';
 
@@ -23,7 +25,7 @@ export const login = (req, res) => {
 export const checkAuth = (req, res) => {
     return new Promise((resolve, _) => {
         passport.authenticate('jwt', {}, (error, user) => {
-            if (error || !user){
+            if (error || !user) {
                 resolve(false);
             }
             resolve(user);
