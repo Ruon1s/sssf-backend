@@ -28,6 +28,7 @@ export default {
     Mutation: {
         register: async (parent, args) => {
             try {
+                console.log('register called with args:', args)
                 const hash = await bcrypt.hash(args.password, 12);
                 const userWithHash = {
                     ...args,
@@ -35,6 +36,7 @@ export default {
                 };
                 const newUser = new User(userWithHash);
                 const result = await newUser.save();
+                console.log(result);
                 return result;
             } catch (err) {
                 throw new UserInputError(err.message);
