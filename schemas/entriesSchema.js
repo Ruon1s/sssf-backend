@@ -11,7 +11,7 @@ export default gql`
         Ingredients: String
         Steps: String
         Rating: Int
-        Date: Float
+        Date: String
         userID: String
     }
     
@@ -34,7 +34,7 @@ export default gql`
         Ingredients: String
         Steps: String
         Rating: Int
-        Date: Float
+        Date: String
         userID: String
         ): Entry
         

@@ -9,7 +9,7 @@ const entriesSchema = new Schema({
     Ingredients: String,
     Steps: String,
     Rating: Number,
-    Date: Number, //might need to swap
+    Date: String, //might need to swap
     userID: String
 });
 
