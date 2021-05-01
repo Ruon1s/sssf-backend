@@ -34,6 +34,7 @@ dotenv.config();
         app.use(helmet({
             ieNoOpen: false
         }));
+        app.use(express.static('public_html'));
         app.use(cors());
         server.applyMiddleware({app, path: '/graphql'});
         console.log(process.env.NODE_ENV);
@@ -54,3 +55,4 @@ dotenv.config();
         console.log('server error: ' + e.message);
     }
 })();
+

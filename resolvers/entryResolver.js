@@ -12,7 +12,10 @@ export default {
         entriesByUser: async (parent, args) => {
             console.log('EntriesbyUserID', args);
             return Entries.find().where('userID').equals(args.id);
-        }
+        },
+        singleEntry: async (parent, args) => {
+            return Entries.find().where('id').equals(args.id);
+        },
     },
 
     Mutation: {
@@ -30,14 +33,15 @@ export default {
                 } else {
                     console.log('addEntry args', args);
                     console.log(await args.File.File);
+                    //	console.log('arguments:', await args.File[0].prototype);
                     let {filename, createReadStream} = await args.File.File;
                     console.log(filename);
                     const stream = createReadStream();
-                    const pathName = path.join(`C://Users/Mikael/Native/sssf-backend/uploads/${filename}`);
+                    const pathName = path.join(`/home/jelastic/ROOT/public_html/${filename}`);
                     console.log('pathname', pathName);
                     await stream.pipe(fs.createWriteStream(pathName));
                     const photourl = {
-                        url: `http://localhost:8000/uploads/${filename}`
+                        url: `https://charge.jelastic.metropolia.fi/${filename}`
                     };
                     let entry = {...args, File: photourl.url};
                     let newEntry = new Entries(entry);
@@ -65,11 +69,11 @@ export default {
                 } else {
                     let {filename, createReadStream} = await args.File.File;
                     const stream = createReadStream();
-                    const pathName = path.join(`C://Users/Mikael/Native/sssf-backend/uploads/${filename}`);
+                    const pathName = path.join(`/home/jelastic/ROOT/public_html/${filename}`);
                     console.log('pathname', pathName);
                     await stream.pipe(fs.createWriteStream(pathName));
                     const photourl = {
-                        url: `http://localhost:8000/uploads/${filename}`
+                        url: `/home/jelastic/ROOT/public/${filename}`
                     };
                     let modifyEntry = {...args, File: photourl.url};
                     const oldEntry = await Entries.findById(args.id);
@@ -77,7 +81,7 @@ export default {
                         console.log('entry to delete', oldEntry);
                         const oldfilename = oldEntry.File.replace(/^.*(\\|\/|\:)/, '');
                         console.log('filename', oldfilename);
-                        await fs.unlink(`C://Users/Mikael/Native/sssf-backend/uploads/${oldfilename}`, (err) => {
+                        await fs.unlink(`/home/jelastic/ROOT/public_html/${oldfilename}`, (err) => {
                             console.log(err)
                         });
                     }
@@ -98,7 +102,7 @@ export default {
                 console.log('entry to delete', entry);
                 const filename = entry.File.replace(/^.*(\\|\/|\:)/, '');
                 console.log('filename', filename);
-                await fs.unlink(`C://Users/Mikael/Native/sssf-backend/uploads/${filename}`, (err) => {
+                await fs.unlink(`/home/jelastic/ROOT/public_html/${filename}`, (err) => {
                     console.log(err)
                 });
                 return await Entries.findByIdAndDelete(args.id);
@@ -111,3 +115,7 @@ export default {
     }
 
 }
+
+
+
+
