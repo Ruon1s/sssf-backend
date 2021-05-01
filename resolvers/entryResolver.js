@@ -15,6 +15,7 @@ export default {
         },
         singleEntry: async (parent, args) => {
             console.log('singleEntry args:', args);
+            console.log(Entries.findById(args.id));
             return Entries.findById(args.id);
         },
     },
