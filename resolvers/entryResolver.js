@@ -14,6 +14,7 @@ export default {
             return Entries.find().where('userID').equals(args.id);
         },
         singleEntry: async (parent, args) => {
+            console.log('singleEntry args:', args);
             return Entries.find().where('_id').equals(args.id);
         },
     },
