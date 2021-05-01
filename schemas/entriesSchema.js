@@ -19,7 +19,7 @@ export default gql`
     extend type Query {
     entries: [Entry]
     entriesByUser(id: String): [Entry]
-    singleEntry(id: ID!): Entry
+    singleEntry(id: String): Entry
     }
     
     input Image {
