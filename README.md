@@ -2,6 +2,10 @@
 Graphql API for a food diary sort of an app.
 
 ## endpoint running at https://charge.jelastic.metropolia.fi/graphql
+
+## frontend for this project is running at https://sssf-frontend.herokuapp.com/
+## www.github.com/Ruon1s/sssf-frontend
+
 ## example queries
 To access the GQL mutations grab the token from login querys result and add it to your requests as bearer token (for example Postmans authorization tab)
 
