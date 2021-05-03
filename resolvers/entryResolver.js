@@ -78,6 +78,8 @@ export default {
                     };
                     let modifyEntry = {...args, File: photourl.url};
                     const oldEntry = await Entries.findById(args.id);
+                    console.log(oldEntry.File);
+                    console.log(photourl.url);
                     if (oldEntry.File !== photourl.url) {
                         console.log('entry to delete', oldEntry);
                         const oldfilename = oldEntry.File.replace(/^.*(\\|\/|\:)/, '');
