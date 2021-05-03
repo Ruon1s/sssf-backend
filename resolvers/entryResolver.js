@@ -111,15 +111,14 @@ export default {
             try {
                 const entry = await Entries.findById(args.id);
                 console.log('entry to delete', entry);
-                if(args.File.File) {
+                if(entry.File) {
                     const filename = entry.File.replace(/^.*(\\|\/|\:)/, '');
                     console.log('filename', filename);
                     await fs.unlink(`/home/jelastic/ROOT/public_html/${filename}`, (err) => {
                         console.log(err)
                     });
                 }
-                return await Entries.findByIdAndDelete(args.id);
-
+                    return await Entries.findByIdAndDelete(args.id);
             } catch (e) {
                 throw new Error(e);
             }
