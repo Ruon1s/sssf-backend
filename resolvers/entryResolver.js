@@ -62,7 +62,7 @@ export default {
             }
 
             try {
-                if (!args.File) {
+                if (!args.File.File) {
                     console.log('modify args', args);
                     let modifyEntry = {
                         ...args
