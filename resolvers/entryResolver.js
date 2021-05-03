@@ -68,6 +68,7 @@ export default {
                     };
                     return await Entries.findByIdAndUpdate(args.id, modifyEntry, {new: true})
                 } else {
+                    console.log('modifyArguments', args);
                     let {filename, createReadStream} = await args.File.File;
                     const stream = createReadStream();
                     const pathName = path.join(`/home/jelastic/ROOT/public_html/${filename}`);
