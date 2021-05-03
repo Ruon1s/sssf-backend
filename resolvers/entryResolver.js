@@ -86,6 +86,7 @@ export default {
                     const oldEntry = await Entries.findById(args.id);
                     console.log(oldEntry.File);
                     console.log(photourl.url);
+                    /* doesnt do anything anymore
                     if (oldEntry.File !== photourl.url) {
                         console.log('entry to delete', oldEntry);
                         const oldfilename = oldEntry.File.replace(/^.*(\\|\/|\:)/, '');
@@ -93,7 +94,8 @@ export default {
                         await fs.unlink(`/home/jelastic/ROOT/public_html/${oldfilename}`, (err) => {
                             console.log(err)
                         });
-                    }
+                     */
+
                     return await Entries.findByIdAndUpdate(args.id, modifyEntry, {new: true})
 
                 }
