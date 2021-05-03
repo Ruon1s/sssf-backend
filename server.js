@@ -43,13 +43,9 @@ dotenv.config();
             remote(app, 4000);
         } else {
             console.log('localhost');
-            const { default: localhost } = await import('./host/localhost.js');
+            const {default: localhost} = await import('./host/localhost.js');
             localhost(app, 8000, 4000);
-            console.log(
-                `🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
         }
-
-
 
     } catch (e) {
         console.log('server error: ' + e.message);
