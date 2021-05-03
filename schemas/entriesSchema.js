@@ -27,7 +27,7 @@ export default gql`
     }
     
     extend type Mutation {  
-    deleteEntry(id: ID!): Entry
+    deleteEntry(id: String): Entry
     addEntry(
         Entryname: String
         File: Image
@@ -39,7 +39,7 @@ export default gql`
         ): Entry
         
     modifyEntry(
-        id: ID!
+        id: String
         File: Image
         Entryname: String
         Ingredients: String
