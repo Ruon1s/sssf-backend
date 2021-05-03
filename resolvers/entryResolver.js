@@ -64,8 +64,10 @@ export default {
             try {
                 if (!args.File.File) {
                     console.log('modify args', args);
+                    delete args.File;
                     let modifyEntry = {
-                        ...args
+
+                        ...args,
                     };
                     return await Entries.findByIdAndUpdate(args.id, modifyEntry, {new: true})
                 } else {
