@@ -36,7 +36,7 @@ dotenv.config();
         }));
         app.use(express.static('public_html'));
         app.use(cors());
-        server.applyMiddleware({app, path: '/graphql'});
+        server.applyMiddleware({app, cors: false, path: '/graphql'});
         console.log(process.env.NODE_ENV);
         process.env.NODE_ENV = process.env.NODE_ENV || 'development';
         if (process.env.NODE_ENV === 'production') {
