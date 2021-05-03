@@ -39,11 +39,11 @@ export default {
                     console.log(filename);
                     const stream = createReadStream();
                     const date = Date.now().toString();
-                    const pathName = path.join(`/home/jelastic/ROOT/public_html/${filename}${date}`);
+                    const pathName = path.join(`/home/jelastic/ROOT/public_html/${date}${filename}`);
                     console.log('pathname', pathName);
                     await stream.pipe(fs.createWriteStream(pathName));
                     const photourl = {
-                        url: `https://charge.jelastic.metropolia.fi/${filename}${date}`
+                        url: `https://charge.jelastic.metropolia.fi/${date}${filename}`
                     };
                     let entry = {...args, File: photourl.url};
                     let newEntry = new Entries(entry);
@@ -73,11 +73,11 @@ export default {
                     let {filename, createReadStream} = await args.File.File;
                     const stream = createReadStream();
                     const date = Date.now().toString();
-                    const pathName = path.join(`/home/jelastic/ROOT/public_html/${filename}${date}`);
+                    const pathName = path.join(`/home/jelastic/ROOT/public_html/${date}${filename}`);
                     console.log('pathname', pathName);
                     await stream.pipe(fs.createWriteStream(pathName));
                     const photourl = {
-                        url: `https://charge.jelastic.metropolia.fi/${filename}${date}`
+                        url: `https://charge.jelastic.metropolia.fi/${date}${filename}`
                     };
                     let modifyEntry = {...args, File: photourl.url};
                     const oldEntry = await Entries.findById(args.id);
