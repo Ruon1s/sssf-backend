@@ -26,8 +26,9 @@ export default {
             }
 
             try {
-                if (!args.File) {
-                    let entry = args;
+                if (!args.File.File) {
+                    delete args.File;
+                     let entry = args;
                     let newEntry = new Entries(entry);
                     const rslt = await newEntry.save();
                     return rslt;
