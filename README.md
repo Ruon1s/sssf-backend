@@ -17,14 +17,14 @@ To access the GQL mutations grab the token from login querys result and add it t
 ```gql
 mutation{
     register(
-    username: "INSERT YOUR USERNAME",
-    password: "INSERT YOUR PASSWORD")
-    {
-      username
-      id
-      token
+        username: "INSERT YOUR USERNAME",
+        password: "INSERT YOUR PASSWORD")
+        {
+            username
+            id
+            token
+        }
     }
-}
 ```
 ```gql
 query{
@@ -41,24 +41,24 @@ query{
 
 ```gql
 mutation UPLOAD_FILE($YOURFILE: Upload!)
-{
-  addEntry(
-        Entryname: "NAME OF THE DISH",
-        File: {File: $YOURFILE},
-        Ingredients: "LIST ALL INGREDIENTS USED",
-        Steps: "STEPS IN RECIPE",
-        Rating: INTEGER VALUE OF YOUR RATING,
-        Date: "DATE AS STRING",
-        userID: "YOUR USER ID")
-        {
-            Entryname
-            File
-            Ingredients
-            Steps
-            Rating
-            Date
-        }
-}
+    {
+        addEntry(
+            Entryname: "NAME OF THE DISH",
+            File: {File: $YOURFILE},
+            Ingredients: "LIST ALL INGREDIENTS USED",
+            Steps: "STEPS IN RECIPE",
+            Rating: INTEGER VALUE OF YOUR RATING,
+            Date: "DATE AS STRING",
+            userID: "YOUR USER ID")
+            {
+                Entryname
+                File
+                Ingredients
+                Steps
+                Rating
+                Date
+            }
+    }
 ```
 
 ```gql
@@ -77,7 +77,7 @@ query{
 
 ```gql
 mutation  {
-  deleteEntry(id: "ID OF YOUR ENTRY HERE")
+    deleteEntry(id: "ID OF YOUR ENTRY HERE")
     {
         id
         File
