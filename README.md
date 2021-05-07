@@ -38,7 +38,19 @@ query{
         }
 }
 ```
-
+```gql
+query{
+    entries {
+        Entryname
+    	Ingredients
+  		File
+    	Steps
+    	Rating
+    	Date
+    	userID
+    }
+}
+```
 ```gql
 mutation UPLOAD_FILE($YOURFILE: Upload!)
     {
